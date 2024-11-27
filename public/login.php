@@ -1,55 +1,48 @@
 <?php
-session_start(); // Iniciar sesión para usar variables de sesión
+session_start(); // Asegúrate de llamar a session_start() al principio
 
-include('../config/db.php'); // Incluir el archivo de conexión a la base de datos
+require 'config/db.php'; // Asegúrate de incluir tu conexión a la base de datos
 
-// Comprobar si el formulario ha sido enviado
+// Verifica si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $username = $conn->real_escape_string($_POST['username']);
     $password = $conn->real_escape_string($_POST['password']);
 
-    // Crear la consulta SQL para verificar las credenciales del usuario
+    // Consulta para verificar las credenciales del usuario
     $query = "SELECT id, username FROM users WHERE username = '$username' AND password = '$password'";
-
     $result = $conn->query($query);
 
-    if ($result->num_rows == 1) {
-        // El usuario existe, configurar las variables de sesión
+    if ($result->num_rows > 0) {
         $user = $result->fetch_assoc();
-        $_SESSION['user_id'] = $user['id'];
-        $_SESSION['username'] = $user['username'];
+        $_SESSION['username'] = $user['username']; // Establece una sesión para el usuario
 
-        // Redirigir al usuario a la página de bienvenida
+        // Redirecciona a welcome.php si las credenciales son correctas
         header("Location: welcome.php");
-        exit();
+        exit;
     } else {
-        // Las credenciales no coinciden o el usuario no existe
-        $error = "Usuario o contraseña incorrectos.";
+        $error = "Las credenciales proporcionadas son incorrectas.";
     }
 }
-?>
 
+$conn->close();
+?>
 <!DOCTYPE html>
-<html lang="en">
+<html>
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
 </head>
 
 <body>
     <h2>Iniciar Sesión</h2>
-    <form method="post" action="login.php">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required><br>
+    <form action="login.php" method="POST">
+        Username: <input type="text" name="username" required><br>
+        Password: <input type="password" name="password" required><br>
         <button type="submit">Iniciar Sesión</button>
     </form>
-    <?php if (!empty($error)) {
-        echo "<p>$error</p>";
-    } ?>
+    <?php if (!empty($error)): ?>
+        <p><?php echo $error; ?></p>
+    <?php endif; ?>
 </body>
 
 </html>

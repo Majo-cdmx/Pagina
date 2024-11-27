@@ -1,10 +1,18 @@
+<?php
+session_start();
+if (!isset($_SESSION['user_id'])) {
+    header("Location: login.php"); // Redirige al login si no está autenticado
+    exit();
+}
+?>
+
 <!DOCTYPE html>
 <html lang="es">
 
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Página Principal</title>
+    <title>Bienvenido</title>
     <style>
         body {
             font-family: Arial, sans-serif;
@@ -16,14 +24,6 @@
             align-items: center;
             height: 100vh;
             background-color: #f0f0f0;
-        }
-
-        header {
-            background-color: #333;
-            color: white;
-            width: 100%;
-            padding: 20px;
-            text-align: center;
         }
 
         main {
@@ -52,15 +52,10 @@
 </head>
 
 <body>
-    <header>
-        <h1>Bienvenido a la Aplicación de Figuras Geométricas y Suscripciones :D</h1>
-    </header>
-
     <main>
-        <h2>Elige una opción:</h2>
+        <h1>Bienvenido a tu Portal</h1>
         <div>
-            <a href="login.php">Iniciar Sesión</a>
-            <a href="register.php">Registrate</a>
+            <a href="subscribe.html">Suscribirse con Stripe</a>
         </div>
     </main>
 </body>

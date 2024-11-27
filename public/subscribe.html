@@ -23,7 +23,7 @@
     </form>
 
     <script>
-        const stripe = Stripe('pk_test_51QORLeEUWIt9tPpJOMOGJf5mU90o3gsElHgGJn5SaDjCAUUKjuvcb2RybGAKg2fyMhr0txtXKZrSxDGZxGwPAAd000VpxzLiiT'); // Reemplaza con tu clave publicable de Stripe
+        const stripe = Stripe('pk_live_51QORLeEUWIt9tPpJWz4ue2zHnpyJQW8ljzaWHcEpOrPFiOmxgRuDWOF6lXGHpo5wm3Unpq0M2LClWjJJkNyGbPpA00eMMC643p'); // Reemplaza con tu clave publicable de Stripe
         const elements = stripe.elements();
         const card = elements.create('card');
         card.mount('#card-element');
@@ -71,6 +71,7 @@
                 alert(subscriptionData.error);
             } else {
                 alert('Suscripción creada exitosamente');
+                window.location.href = 'shapes.php'; // Redirección a shapes.php después de una suscripción exitosa
             }
         });
     </script>

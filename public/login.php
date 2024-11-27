@@ -1,19 +1,23 @@
 <?php
 session_start();
 
+$pdo = new PDO('mysql:host=localhost;dbname=simple_login', 'root', ''); // Ajusta los valores según tu configuración
+$login_success = false;
+$login_error = '';
+
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $pdo = new PDO('mysql:host=localhost;dbname=simple_login', 'root', ''); // Asegúrate de ajustar estos valores
-    $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([$_POST['username'], $_POST['password']]);
-    $user = $stmt->fetch();
+    $username = trim($_POST['username']);
+    $password = $_POST['password'];
+
+    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
+    $stmt->execute([$username, $password]);
+    $user = $stmt->fetch(PDO::FETCH_ASSOC);
 
     if ($user) {
         $_SESSION['username'] = $user['username'];
-        header("Location: dashboard.php"); // Redirige al usuario a dashboard.php
-        exit;
+        $login_success = true;
     } else {
-        $login_error = "Nombre de usuario o contraseña incorrectos.";
+        $login_error = 'Nombre de usuario o contraseña incorrectos.';
     }
 }
 ?>
@@ -28,18 +32,23 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
     <h2>Iniciar Sesión</h2>
-    <?php if (!empty($login_error)): ?>
+    <?php if ($login_error): ?>
         <p style="color: red;"><?= $login_error ?></p>
     <?php endif; ?>
-    <form action="login.php" method="post">
-        <label for="username">Nombre de usuario:</label>
-        <input type="text" name="username" id="username" required><br><br>
+    <?php if ($login_success): ?>
+        <p>Inicio de sesión exitoso. Bienvenido, <?= htmlspecialchars($_SESSION['username']) ?>!</p>
+        <p><a href="dashboard.php">Ir al Dashboard</a></p>
+    <?php else: ?>
+        <form action="login.php" method="post">
+            <label for="username">Nombre de usuario:</label>
+            <input type="text" name="username" id="username" required><br><br>
 
-        <label for="password">Contraseña:</label>
-        <input type="password" name="password" id="password" required><br><br>
+            <label for="password">Contraseña:</label>
+            <input type="password" name="password" id="password" required><br><br>
 
-        <button type="submit">Iniciar Sesión</button>
-    </form>
+            <button type="submit">Iniciar Sesión</button>
+        </form>
+    <?php endif; ?>
 </body>
 
 </html>

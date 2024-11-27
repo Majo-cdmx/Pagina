@@ -1,48 +1,56 @@
 <?php
-session_start(); // Asegúrate de llamar a session_start() al principio
+session_start(); // Inicia sesión para utilizar variables de sesión
+require_once '../config/db.php'; // Asegúrate de que la ruta a db.php es correcta
 
-require ('../config/db.php'); // Asegúrate de incluir tu conexión a la base de datos
-
-// Verifica si el formulario ha sido enviado
+// Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = $conn->real_escape_string($_POST['username']);
-    $password = $conn->real_escape_string($_POST['password']);
+    $username = $_POST['username'] ?? null;
+    $password = $_POST['password'] ?? null;
 
-    // Consulta para verificar las credenciales del usuario
-    $query = "SELECT id, username FROM users WHERE username = '$username' AND password = '$password'";
-    $result = $conn->query($query);
-
-    if ($result->num_rows > 0) {
-        $user = $result->fetch_assoc();
-        $_SESSION['username'] = $user['username']; // Establece una sesión para el usuario
-
-        // Redirecciona a welcome.php si las credenciales son correctas
-        header("Location: welcome.php");
-        exit;
+    if (empty($username) || empty($password)) {
+        // Gestionar error si alguno de los campos está vacío
+        echo "Todos los campos son requeridos.";
     } else {
-        $error = "Las credenciales proporcionadas son incorrectas.";
+        // Preparar y ejecutar consulta
+        $sql = "SELECT * FROM users WHERE username = :username LIMIT 1";
+        $stmt = $pdo->prepare($sql);
+        $stmt->execute(['username' => $username]);
+        $user = $stmt->fetch(PDO::FETCH_ASSOC);
+
+        if ($user && password_verify($password, $user['password'])) {
+            // Si la autenticación es correcta, configurar la sesión
+            $_SESSION['user_id'] = $user['id'];
+            $_SESSION['username'] = $user['username'];
+
+            // Redirigir a welcome.php
+            header("Location: welcome.php");
+            exit;
+        } else {
+            // Gestionar error si la autenticación falla
+            echo "Nombre de usuario o contraseña incorrectos.";
+        }
     }
 }
 
-$conn->close();
 ?>
 <!DOCTYPE html>
-<html>
+<html lang="es">
 
 <head>
-    <title>Iniciar Sesión</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Iniciar sesión</title>
 </head>
 
 <body>
     <h2>Iniciar Sesión</h2>
-    <form action="login.php" method="POST">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
+    <form action="login.php" method="post">
+        <label for="username">Nombre de usuario:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br>
         <button type="submit">Iniciar Sesión</button>
     </form>
-    <?php if (!empty($error)): ?>
-        <p><?php echo $error; ?></p>
-    <?php endif; ?>
 </body>
 
 </html>

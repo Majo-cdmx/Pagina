@@ -1,7 +1,7 @@
 <?php
 session_start(); // Asegúrate de llamar a session_start() al principio
 
-require 'config/db.php'; // Asegúrate de incluir tu conexión a la base de datos
+require ('../config/db.php'); // Asegúrate de incluir tu conexión a la base de datos
 
 // Verifica si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

@@ -1,54 +1,55 @@
 <?php
-session_start();
+session_start(); // Iniciar sesión para usar variables de sesión
 
-$pdo = new PDO('mysql:host=localhost;dbname=simple_login', 'root', ''); // Ajusta los valores según tu configuración
-$login_success = false;
-$login_error = '';
+include 'db.php'; // Incluir el archivo de conexión a la base de datos
 
+// Comprobar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
-    $username = trim($_POST['username']);
-    $password = $_POST['password'];
+    $username = $conn->real_escape_string($_POST['username']);
+    $password = $conn->real_escape_string($_POST['password']);
 
-    $stmt = $pdo->prepare("SELECT * FROM users WHERE username = ? AND password = ?");
-    $stmt->execute([$username, $password]);
-    $user = $stmt->fetch(PDO::FETCH_ASSOC);
+    // Crear la consulta SQL para verificar las credenciales del usuario
+    $query = "SELECT id, username FROM users WHERE username = '$username' AND password = '$password'";
 
-    if ($user) {
+    $result = $conn->query($query);
+
+    if ($result->num_rows == 1) {
+        // El usuario existe, configurar las variables de sesión
+        $user = $result->fetch_assoc();
+        $_SESSION['user_id'] = $user['id'];
         $_SESSION['username'] = $user['username'];
-        $login_success = true;
+
+        // Redirigir al usuario a la página de bienvenida
+        header("Location: welcome.php");
+        exit();
     } else {
-        $login_error = 'Nombre de usuario o contraseña incorrectos.';
+        // Las credenciales no coinciden o el usuario no existe
+        $error = "Usuario o contraseña incorrectos.";
     }
 }
 ?>
 
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Iniciar Sesión</title>
 </head>
 
 <body>
     <h2>Iniciar Sesión</h2>
-    <?php if ($login_error): ?>
-        <p style="color: red;"><?= $login_error ?></p>
-    <?php endif; ?>
-    <?php if ($login_success): ?>
-        <p>Inicio de sesión exitoso. Bienvenido, <?= htmlspecialchars($_SESSION['username']) ?>!</p>
-        <p><a href="dashboard.php">Ir al Dashboard</a></p>
-    <?php else: ?>
-        <form action="login.php" method="post">
-            <label for="username">Nombre de usuario:</label>
-            <input type="text" name="username" id="username" required><br><br>
-
-            <label for="password">Contraseña:</label>
-            <input type="password" name="password" id="password" required><br><br>
-
-            <button type="submit">Iniciar Sesión</button>
-        </form>
-    <?php endif; ?>
+    <form method="post" action="login.php">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required><br>
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br>
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+    <?php if (!empty($error)) {
+        echo "<p>$error</p>";
+    } ?>
 </body>
 
 </html>

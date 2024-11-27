@@ -1,6 +1,6 @@
 <?php
 session_start(); // Inicia sesión para utilizar variables de sesión
-require_once '../config/db.php'; // Asegúrate de que la ruta a db.php es correcta
+require_once ('../config/db.php'); // Asegúrate de que la ruta a db.php es correcta
 
 // Verificar si el formulario ha sido enviado
 if ($_SERVER["REQUEST_METHOD"] == "POST") {

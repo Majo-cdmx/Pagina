@@ -20,6 +20,7 @@ if (!isset($_SESSION['username'])) {
 <body>
     <h1>Bienvenido al Dashboard, <?= htmlspecialchars($_SESSION['username']) ?></h1>
     <p>Este es el contenido protegido del Dashboard.</p>
+    <a href="subscribe.html">Subscribete</a>
     <a href="logout.php">Cerrar Sesión</a>
 </body>
 

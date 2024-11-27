@@ -1,37 +1,71 @@
 <?php
 session_start();
-$pdo = require ('../config/db.php'); // Asegúrate de ajustar la ruta al archivo db.php
 
-if ($_SERVER['REQUEST_METHOD'] == 'POST' && isset($_POST['username'], $_POST['password'])) {
+// Conectar a la base de datos usando la variable de entorno JAWSDB_URL
+$cleardb_url = parse_url(getenv("JAWSDB_URL"));
+$host = $cleardb_url["host"];
+$user = $cleardb_url["user"];
+$pass = $cleardb_url["pass"];
+$dbname = substr($cleardb_url["path"], 1);
+
+// Crear una conexión PDO
+try {
+    $pdo = new PDO("mysql:host=$host;dbname=$dbname;charset=utf8", $user, $pass);
+    $pdo->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+} catch (PDOException $e) {
+    die("Error de conexión: " . $e->getMessage());
+}
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    try {
-        $stmt = $pdo->prepare("SELECT id, password FROM users WHERE username = :username");
-        $stmt->execute(['username' => $username]);
-        $user = $stmt->fetch();
+    if (!empty($username) && !empty($password)) {
+        // Consulta para verificar el usuario y la contraseña
+        $stmt = $pdo->prepare("SELECT * FROM users WHERE username = :username AND password = :password");
+        $stmt->bindParam(':username', $username);
+        $stmt->bindParam(':password', $password);
+        $stmt->execute();
 
-        if ($user && password_verify($password, $user['password'])) {
-            // Credenciales válidas
-            $_SESSION['user_id'] = $user['id'];
-            header('Location: welcome.php');
-            exit;
+        if ($stmt->rowCount() > 0) {
+            // Si el usuario es encontrado, iniciar sesión
+            $_SESSION['username'] = $username;
+            header("Location: welcome.php");
+            exit();
         } else {
-            // Credenciales inválidas
-            $error = "Usuario o contraseña incorrecta.";
+            // Si las credenciales no coinciden, mostrar error
+            $error = "Nombre de usuario o contraseña incorrectos.";
         }
-    } catch (PDOException $e) {
-        $error = "Error de conexión: " . $e->getMessage();
+    } else {
+        $error = "Por favor, complete ambos campos.";
     }
 }
+?>
 
-// Mostrar mensaje de error o formulario de login
-if (isset($error)) {
-    echo $error;
-} else {
-    echo '<form action="login.php" method="post">
-              Usuario: <input type="text" name="username"><br>
-              Contraseña: <input type="password" name="password"><br>
-              <input type="submit" value="Iniciar sesión">
-          </form>';
-}
+<!DOCTYPE html>
+<html lang="es">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iniciar Sesión</title>
+</head>
+
+<body>
+    <h1>Iniciar Sesión</h1>
+
+    <?php if (isset($error)): ?>
+        <p style="color: red;"><?php echo htmlspecialchars($error); ?></p>
+    <?php endif; ?>
+
+    <form method="POST" action="login.php">
+        <label for="username">Usuario:</label>
+        <input type="text" id="username" name="username" required><br><br>
+
+        <label for="password">Contraseña:</label>
+        <input type="password" id="password" name="password" required><br><br>
+
+        <button type="submit">Iniciar Sesión</button>
+    </form>
+</body>
+
+</html>

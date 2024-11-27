@@ -53,7 +53,7 @@
 
 <body>
     <header>
-        <h1>Bienvenido a la Aplicación de Figuras Geométricas y Suscripciones</h1>
+        <h1>Bienvenido a la Aplicación de Figuras Geométricas y Suscripciones :D</h1>
     </header>
 
     <main>

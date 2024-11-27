@@ -2,7 +2,7 @@
 // webhook.php
 require 'config.php';
 
-$endpoint_secret = 'YOUR_ENDPOINT_SECRET'; // Reemplaza con tu endpoint secret de Stripe
+$endpoint_secret = 'whsec_cHre8yTOQQMD5Wtcn4Oy8Iyh6I2mwhF1'; // Reemplaza con tu endpoint secret de Stripe
 $payload = @file_get_contents('php://input');
 $sig_header = $_SERVER['HTTP_STRIPE_SIGNATURE'];
 $event = null;

@@ -1,12 +1,11 @@
 <?php
 session_start();
-
 if (!isset($_SESSION['username'])) {
-    header("Location: login.php"); // Redirigir a login si no está logueado
-    exit;
+    header('Location: login.php');
+    exit();
 }
-
 ?>
+
 
 <!DOCTYPE html>
 <html lang="es">

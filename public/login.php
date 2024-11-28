@@ -48,28 +48,45 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
+    <link rel="stylesheet" href="../styles/login.css">
 </head>
 
 <body>
-    <h2>Iniciar Sesión</h2>
-    <?php
-    // Mostrar mensaje de error si existe
-    if (isset($error_message)) {
-        echo "<p style='color:red;'>" . htmlspecialchars($error_message) . "</p>";
-    }
-    ?>
-    <form action="login.php" method="POST">
-        <label for="username">Usuario:</label>
-        <input type="text" id="username" name="username" required>
-        <br><br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-        <br><br>
-        <button type="submit">Iniciar Sesión</button>
-    </form>
-    <br>
-    <a href="register.php">Registrarse</a>
+    <header>
+        <h1>LGDS</h1>
+    </header>
+
+    <main>
+        <div class="login-container">
+            <h2>Iniciar Sesión</h2>
+            <?php
+            // Mostrar mensaje de error si existe
+            if (isset($error_message)) {
+                echo "<p style='color:red;'>" . htmlspecialchars($error_message) . "</p>";
+            }
+            ?>
+            <form action="login.php" method="POST">
+                <label for="username">Usuario:</label>
+                <input type="text" id="username" name="username" required>
+                <br><br>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <br><br>
+                <button type="submit">Iniciar Sesión</button>
+            </form>
+            <br>
+            <a href="register.php" class="register-link">Registrarse</a>
+            <br><br>
+            <!-- Agregar enlace para regresar al inicio -->
+            <a href="index.php" class="back-link">Regresar al Inicio</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 LGDS. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

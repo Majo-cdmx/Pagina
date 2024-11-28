@@ -31,21 +31,39 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Registro de Usuario</title>
+    <link rel="stylesheet" href="../styles/register.css">
 </head>
 
 <body>
-    <h1>Registro de Usuario</h1>
-    <form action="register.php" method="post">
-        <label for="username">Nombre de Usuario:</label>
-        <input type="text" id="username" name="username" required>
-        <br>
-        <label for="password">Contraseña:</label>
-        <input type="password" id="password" name="password" required>
-        <br>
-        <button type="submit">Registrar</button>
-    </form>
-    <a href="login.php">Iniciar Sesión</a>
+    <header>
+        <h1>LGDS</h1>
+    </header>
+
+    <main>
+        <div class="register-container">
+            <h2>Registro de Usuario</h2>
+            <form action="register.php" method="post">
+                <label for="username">Nombre de Usuario:</label>
+                <input type="text" id="username" name="username" required>
+                <br>
+                <label for="password">Contraseña:</label>
+                <input type="password" id="password" name="password" required>
+                <br>
+                <button type="submit">Registrar</button>
+            </form>
+            <br>
+            <a href="login.php" class="login-link">Iniciar Sesión</a>
+            <br><br>
+            <!-- Enlace para regresar al inicio -->
+            <a href="index.php" class="back-link">Regresar al Inicio</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2024 LGDS. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

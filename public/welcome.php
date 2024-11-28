@@ -13,7 +13,7 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido al Dashboard</title>
-    <link rel="stylesheet" href="styles/welcome.css">
+    <link rel="stylesheet" href="styles/estiloW.css">
 </head>
 
 <body>

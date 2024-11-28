@@ -6,7 +6,6 @@ if (!isset($_SESSION['username'])) {
 }
 ?>
 
-
 <!DOCTYPE html>
 <html lang="es">
 
@@ -14,13 +13,32 @@ if (!isset($_SESSION['username'])) {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido al Dashboard</title>
+    <link rel="stylesheet" href="styles/welcome.css">
 </head>
 
 <body>
-    <h1>Bienvenido al Dashboard, <?= htmlspecialchars($_SESSION['username']) ?></h1>
-    <p>Este es el contenido protegido del Dashboard.</p>
-    <a href="subscribe.html">Subscribete</a>
-    <a href="logout.php">Cerrar Sesión</a>
+    <header>
+        <div class="header-content">
+            <h1>LGDS</h1>
+            <div class="logout-button">
+                <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
+            </div>
+        </div>
+    </header>
+
+    <main>
+        <h1>Bienvenido al Dashboard, <?= htmlspecialchars($_SESSION['username']) ?></h1>
+        <p>Este es el contenido protegido del Dashboard.</p>
+
+        <!-- Botón de Suscribirse centrado -->
+        <div class="subscribe-container">
+            <a href="subscribe.html" class="btn-subscribe">Subscribete</a>
+        </div>
+    </main>
+
+    <footer>
+        <p>© 2024 LGDS. Todos los derechos reservados.</p>
+    </footer>
 </body>
 
 </html>

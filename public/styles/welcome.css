@@ -1,0 +1,88 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el header */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Estilo para el botón de cerrar sesión en el header */
+.logout-button .btn-logout {
+    background-color: #ff5e5e;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button .btn-logout:hover {
+    background-color: #ff0000;
+}
+
+/* Estilo para el main */
+main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+main h1 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+main p {
+    color: #555;
+}
+
+/* Contenedor para el botón de subscribete centrado */
+.subscribe-container {
+    margin-top: 30px;
+}
+
+.btn-subscribe {
+    display: inline-block;
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 1.2rem;
+    text-decoration: none;
+    border-radius: 8px;
+    transition: background-color 0.3s;
+}
+
+.btn-subscribe:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

@@ -20,7 +20,8 @@ if (!isset($_SESSION['username'])) {
     <header>
         <div class="header-content">
             <h1>LGDS</h1>
-            <div class="logout-button">
+            <div class="buttons-container">
+                <a href="shapes.php" class="btn-animacion">Figuras Animación</a>
                 <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
             </div>
         </div>
@@ -29,10 +30,8 @@ if (!isset($_SESSION['username'])) {
     <main>
         <h1>Bienvenido al Dashboard, <?= htmlspecialchars($_SESSION['username']) ?></h1>
         <p>Este es el contenido protegido del Dashboard.</p>
-
-        <!-- Botón de Suscribirse centrado -->
         <div class="subscribe-container">
-            <a href="subscribe.html" class="btn-subscribe">Subscribete</a>
+            <a href="subscribe.html" class="btn-subscribe">Suscríbete</a>
         </div>
     </main>
 

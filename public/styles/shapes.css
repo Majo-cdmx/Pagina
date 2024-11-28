@@ -28,7 +28,7 @@ header h1 {
     margin: 0;
 }
 
-/* Estilo para los botones en la barra de estado del header */
+/* Botones en el header */
 .buttons-container {
     display: flex;
     gap: 10px;
@@ -66,41 +66,45 @@ main {
 }
 
 main h2 {
-    font-size: 1.8rem;
+    font-size: 1.5rem;
     color: #333;
+}
+
+/* Estilo para el formulario */
+form {
     margin-bottom: 20px;
 }
 
-main form {
-    display: inline-block;
-    text-align: left;
-    margin-bottom: 20px;
+.input-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
 }
 
-main label {
+input[type="submit"],
+select {
+    padding: 10px;
     font-size: 1rem;
-    color: #555;
-}
-
-main input[type="submit"] {
-    background-color: #28a745;
-    color: #fff;
-    padding: 10px 20px;
-    font-size: 1rem;
-    border: none;
+    border: 1px solid #ccc;
     border-radius: 5px;
     cursor: pointer;
+}
+
+.btn-draw {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
     transition: background-color 0.3s;
 }
 
-main input[type="submit"]:hover {
+.btn-draw:hover {
     background-color: #218838;
 }
 
 /* Estilo para el canvas */
 canvas {
-    border: 1px solid #333;
-    margin-top: 30px;
+    border: 1px solid #ccc;
+    margin-top: 20px;
 }
 
 /* Estilo para el footer */

@@ -1,0 +1,119 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el header */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Botones en el header */
+.buttons-container {
+    display: flex;
+    gap: 10px;
+}
+
+.buttons-container .btn-calculate,
+.buttons-container .btn-logout {
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+    color: #fff;
+    transition: background-color 0.3s;
+}
+
+.btn-calculate {
+    background-color: #007bff;
+}
+
+.btn-calculate:hover {
+    background-color: #0056b3;
+}
+
+.btn-logout {
+    background-color: #ff5e5e;
+}
+
+.btn-logout:hover {
+    background-color: #ff0000;
+}
+
+/* Estilo para el main */
+main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+main h2 {
+    font-size: 1.5rem;
+    color: #333;
+}
+
+/* Estilo para el formulario */
+form {
+    margin-bottom: 20px;
+}
+
+.input-group {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+}
+
+input[type="submit"],
+select {
+    padding: 10px;
+    font-size: 1rem;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+.btn-draw {
+    background-color: #28a745;
+    color: #fff;
+    border: none;
+    transition: background-color 0.3s;
+}
+
+.btn-draw:hover {
+    background-color: #218838;
+}
+
+/* Estilo para el canvas */
+canvas {
+    border: 1px solid #ccc;
+    margin-top: 20px;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

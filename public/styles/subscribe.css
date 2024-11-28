@@ -1,0 +1,116 @@
+/* Estilo general */
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+
+/* Estilo para el header */
+header {
+    background-color: #000;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+header h1 {
+    font-size: 2rem;
+    margin: 0;
+}
+
+/* Estilo para el botón de cerrar sesión en el header */
+.logout-button .btn-logout {
+    background-color: #ff5e5e;
+    color: #fff;
+    padding: 10px 15px;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.logout-button .btn-logout:hover {
+    background-color: #ff0000;
+}
+
+/* Estilo para el main */
+main {
+    text-align: center;
+    margin-top: 50px;
+}
+
+main h2 {
+    font-size: 1.8rem;
+    color: #333;
+    margin-bottom: 20px;
+}
+
+/* Contenedor del formulario de suscripción */
+.subscription-container {
+    background-color: #fff;
+    width: 350px;
+    margin: 0 auto;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.form-group {
+    margin-bottom: 15px;
+}
+
+label {
+    display: block;
+    font-weight: bold;
+    margin-bottom: 5px;
+    text-align: left;
+}
+
+input {
+    width: 100%;
+    padding: 10px;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    box-sizing: border-box;
+}
+
+/* Estilo del contenedor de Stripe */
+#card-element-container {
+    margin-top: 10px;
+}
+
+/* Botón de suscribirse */
+.btn-subscribe {
+    background-color: #007bff;
+    color: #fff;
+    padding: 15px 25px;
+    font-size: 1.1rem;
+    text-decoration: none;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+
+.btn-subscribe:hover {
+    background-color: #0056b3;
+}
+
+/* Estilo para el footer */
+footer {
+    background-color: #000;
+    color: #fff;
+    padding: 20px;
+    position: fixed;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+}

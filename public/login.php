@@ -1,6 +1,11 @@
 <?php
 session_start();
-require_once '../config/db.php';
+require_once __DIR__ . '/../config/db.php';
+
+// Habilitar errores para depurar
+ini_set('display_errors', 1);
+ini_set('display_startup_errors', 1);
+error_reporting(E_ALL);
 
 // Verificar si el usuario ya está autenticado
 if (isset($_SESSION['username'])) {
@@ -20,12 +25,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     if (!empty($username) && !empty($password)) {
         try {
             // Buscar al usuario en la base de datos
-            $sql = "SELECT * FROM users WHERE username = ? AND password = ?";
+            $sql = "SELECT * FROM users WHERE username = ?";
             $stmt = $pdo->prepare($sql);
-            $stmt->execute([$username, $password]);
+            $stmt->execute([$username]);
             $user = $stmt->fetch();
 
-            if ($user) {
+            if ($user && password_verify($password, $user['password'])) {
                 // Si el usuario existe, establecer la sesión y redirigir a `welcome.php`
                 $_SESSION['username'] = $username;
                 header("Location: welcome.php");
@@ -50,7 +55,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <link rel="stylesheet" href="styles/login.css">
+    <link rel="stylesheet" href="/styles/login.css">
 </head>
 
 <body>

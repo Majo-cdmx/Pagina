@@ -1,0 +1,111 @@
+/* estilosL.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100vh;
+}
+
+header {
+    background-color: #00509e;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+h1 {
+    margin: 0;
+    font-size: 2rem;
+}
+
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    max-width: 400px;
+    padding: 20px;
+    background-color: #ffffff;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.login-container {
+    width: 100%;
+    text-align: center;
+}
+
+h2 {
+    color: #00509e;
+    margin-bottom: 20px;
+    font-size: 1.8rem;
+}
+
+label {
+    color: #00509e;
+    font-weight: bold;
+}
+
+input[type="text"],
+input[type="password"] {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #00509e;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+button[type="submit"] {
+    background-color: #ff7f11;
+    color: #ffffff;
+    border: none;
+    padding: 10px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+button[type="submit"]:hover {
+    background-color: #e06c00;
+}
+
+.register-link,
+.back-link {
+    color: #00509e;
+    text-decoration: none;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+.register-link:hover,
+.back-link:hover {
+    color: #ff7f11;
+}
+
+footer {
+    margin-top: 20px;
+    padding: 10px;
+    background-color: #00509e;
+    color: #ffffff;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+p {
+    margin: 0;
+    font-size: 0.9rem;
+}

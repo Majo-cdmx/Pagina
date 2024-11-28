@@ -1,0 +1,128 @@
+/* estiloS.css */
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #e6f7ff;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+header {
+    background-color: #00509e;
+    color: #ffffff;
+    padding: 20px;
+    text-align: center;
+    width: 100%;
+    box-shadow: 0 4px 2px -2px rgba(0, 0, 0, 0.2);
+}
+
+.header-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.logout-button {
+    display: flex;
+    gap: 15px;
+}
+
+.btn-logout {
+    background-color: #ff7f11;
+    color: #ffffff;
+    padding: 10px 15px;
+    border: none;
+    border-radius: 5px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-logout:hover {
+    background-color: #e06c00;
+}
+
+main {
+    background-color: #ffffff;
+    padding: 25px;
+    margin: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    width: 90%;
+    max-width: 600px;
+    text-align: center;
+}
+
+h2 {
+    color: #00509e;
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+}
+
+.subscription-container {
+    width: 100%;
+}
+
+.form-group {
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+label {
+    color: #00509e;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="text"] {
+    width: 95%;
+    padding: 10px;
+    margin-bottom: 10px;
+    border: 2px solid #00509e;
+    border-radius: 5px;
+    font-size: 1rem;
+}
+
+#card-element {
+    padding: 15px;
+    border: 2px solid #00509e;
+    border-radius: 5px;
+}
+
+.btn-subscribe {
+    background-color: #ff7f11;
+    color: #ffffff;
+    border: none;
+    padding: 12px 20px;
+    font-size: 1rem;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: background-color 0.3s;
+}
+
+.btn-subscribe:hover {
+    background-color: #e06c00;
+}
+
+footer {
+    background-color: #00509e;
+    color: #ffffff;
+    padding: 10px;
+    width: 100%;
+    text-align: center;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+}
+
+p {
+    margin: 0;
+    font-size: 0.9rem;
+}

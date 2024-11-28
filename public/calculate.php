@@ -66,41 +66,53 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Calculadora de Áreas y Perímetros</title>
-    <style>
-        label,
-        input {
-            margin: 5px;
-        }
-    </style>
+    <link rel="stylesheet" href="styles/calculate.css">
 </head>
 
 <body>
-    <h1>Calculadora de Áreas y Perímetros</h1>
-    <form method="post">
-        <label for="shape">Seleccione la forma (dimensiones en cm):</label>
-        <select id="shape" name="shape" onchange="updateFields()">
-            <option value="circle">Círculo</option>
-            <option value="rectangle">Rectángulo</option>
-            <option value="square">Cuadrado</option>
-            <option value="triangle">Triángulo</option>
-            <option value="ellipse">Elipse</option>
-            <option value="pentagon">Pentágono</option>
-            <option value="hexagon">Hexágono</option>
-            <option value="trapezoid">Trapecio</option>
-            <option value="parallelogram">Paralelogramo</option>
-        </select>
-        <br><br>
-        <div id="fields"></div>
-        <br>
-        <button type="submit">Calcular</button>
-    </form>
+    <header>
+        <div class="header-content">
+            <h1>LGDS</h1>
+            <div class="buttons-container">
+                <a href="shapes.php" class="btn-back">Regresar a Figuras</a>
+                <a href="logout.php" class="btn-logout">Cerrar Sesión</a>
+            </div>
+        </div>
+    </header>
 
-    <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
-        <h2>Resultados:</h2>
-        <p>Área: <?= number_format($area, 2) ?> cm²</p>
-        <p>Perímetro: <?= number_format($perimeter, 2) ?> cm</p>
-    <?php endif; ?>
+    <main>
+        <h1>Calculadora de Áreas y Perímetros</h1>
+        <form method="post">
+            <label for="shape">Seleccione la forma (dimensiones en cm):</label>
+            <select id="shape" name="shape" onchange="updateFields()">
+                <option value="circle">Círculo</option>
+                <option value="rectangle">Rectángulo</option>
+                <option value="square">Cuadrado</option>
+                <option value="triangle">Triángulo</option>
+                <option value="ellipse">Elipse</option>
+                <option value="pentagon">Pentágono</option>
+                <option value="hexagon">Hexágono</option>
+                <option value="trapezoid">Trapecio</option>
+                <option value="parallelogram">Paralelogramo</option>
+            </select>
+            <br><br>
+            <div id="fields"></div>
+            <br>
+            <button type="submit">Calcular</button>
+        </form>
+
+        <?php if ($_SERVER["REQUEST_METHOD"] == "POST"): ?>
+            <h2>Resultados:</h2>
+            <p>Área: <?= number_format($area, 2) ?> cm²</p>
+            <p>Perímetro: <?= number_format($perimeter, 2) ?> cm</p>
+        <?php endif; ?>
+    </main>
+
+    <footer>
+        <p>© 2024 LGDS. Todos los derechos reservados.</p>
+    </footer>
 
     <script>
         function updateFields() {

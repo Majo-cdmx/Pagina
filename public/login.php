@@ -26,11 +26,6 @@ if (isset($_SESSION['username'])) {
         <br><br>
         <button type="submit">Iniciar Sesión</button>
     </form>
-
-    <!-- Google Sign-In Button -->
-    <br>
-    <a href="google_login.php">Iniciar sesión con Google</a>
-
 </body>
 
 </html>

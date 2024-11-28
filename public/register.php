@@ -8,12 +8,22 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     // Verificar si los campos no están vacíos
     if (!empty($username) && !empty($password)) {
         try {
-            // Insertar usuario sin encriptar la contraseña
-            $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
-            $stmt = $pdo->prepare($sql);
-            $stmt->execute([$username, $password]);
+            // Verificar si el nombre de usuario ya está registrado
+            $checkUserSql = "SELECT COUNT(*) FROM users WHERE username = ?";
+            $stmt = $pdo->prepare($checkUserSql);
+            $stmt->execute([$username]);
+            $count = $stmt->fetchColumn();
 
-            echo "Registro exitoso";
+            if ($count > 0) {
+                echo "El nombre de usuario ya está registrado, elige otro.";
+            } else {
+                // Insertar usuario sin encriptar la contraseña
+                $sql = "INSERT INTO users (username, password) VALUES (?, ?)";
+                $stmt = $pdo->prepare($sql);
+                $stmt->execute([$username, $password]);
+
+                echo "Registro exitoso";
+            }
         } catch (PDOException $e) {
             echo "Error al registrar: " . $e->getMessage();
         }

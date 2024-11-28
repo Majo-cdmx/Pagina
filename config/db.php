@@ -19,7 +19,4 @@ function getDbConnection()
     return $conn;
 }
 
-// Variables de entorno para Google OAuth
-putenv('GOOGLE_CLIENT_ID=811564123107-1q4tj4t9n0o84cm3hg8urc1c9sj9cif8.apps.googleusercontent.com');
-putenv('GOOGLE_CLIENT_SECRET=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');
 ?>
